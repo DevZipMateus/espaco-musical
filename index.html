@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espaço Musical</title>
+    <meta name="description" content="Espaço Musical — loja de acessórios musicais em Itatinga-SP. Cordas para violino, violão, violoncelo, bandolim, cavaco, palhetas e acessórios para todos os instrumentos.">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="pt-BR">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Espaço Musical">
+    <meta property="og:description" content="Loja de acessórios musicais em Itatinga-SP. Cordas para violino, violão, violoncelo, bandolim, cavaco, palhetas e acessórios para todos os instrumentos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://espacomusicalinstrumentos.com.br">
+    <meta property="og:image" content="https://espacomusical.com.br/logo.png">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="1780749956685_img_20260528_wa0006.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+           VARIÁVEIS
+        ============================================================ */
+        :root {
+            --navy:        #13133a;
+            --navy-mid:    #1a1a50;
+            --navy-light:  #22226a;
+            --navy-dark:   #0b0b28;
+            --gold:        #c49209;
+            --gold-light:  #e2aa1a;
+            --gold-pale:   #f5e8b0;
+            --white:       #ffffff;
+            --off-white:   #f8f7f4;
+            --gray-light:  #eeece8;
+            --gray-mid:    #ccc9c0;
+            --gray-text:   #6a6760;
+            --text-dark:   #161630;
+
+            --ff-display:  'Cormorant Garamond', Georgia, serif;
+            --ff-body:     'DM Sans', system-ui, sans-serif;
+
+            --header-h:    72px;
+            --ease:        0.32s cubic-bezier(.25,.46,.45,.94);
+            --radius-sm:   8px;
+            --radius-md:   14px;
+            --radius-lg:   20px;
+        }
+
+        /* ============================================================
+           RESET & BASE
+        ============================================================ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; font-size: 18px; }
+
+        body {
+            font-family: var(--ff-body);
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { transition: color var(--ease); }
+        :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+        /* ============================================================
+           HEADER
+        ============================================================ */
+        #header {
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 1000;
+            height: var(--header-h);
+            background: rgba(11, 11, 40, 0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(196, 146, 9, 0.2);
+            transition: box-shadow var(--ease);
+        }
+
+        #header.scrolled {
+            box-shadow: 0 4px 28px rgba(0, 0, 0, 0.35);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 28px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* Logo */
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .logo img {
+            height: 68px;
+            width: auto;
+            display: block;
+            border-radius: 6px;
+        }
+
+        /* Desktop nav */
+        .main-nav { display: flex; align-items: center; gap: 4px; }
+
+        .main-nav a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 400;
+            padding: 7px 15px;
+            border-radius: var(--radius-sm);
+            transition: color var(--ease), background var(--ease);
+            letter-spacing: 0.025em;
+        }
+        .main-nav a:hover {
+            color: var(--gold-light);
+            background: rgba(196, 146, 9, 0.1);
+        }
+
+        /* Header CTA */
+        .btn-header {
+            background: var(--gold);
+            color: var(--navy-dark);
+            text-decoration: none;
+            font-size: 0.855rem;
+            font-weight: 600;
+            padding: 9px 22px;
+            border-radius: var(--radius-sm);
+            white-space: nowrap;
+            letter-spacing: 0.03em;
+            transition: background var(--ease), box-shadow var(--ease), color var(--ease);
+        }
+        .btn-header:hover {
+            background: var(--gold-light);
+            color: var(--navy-dark);
+            box-shadow: 0 4px 18px rgba(196,146,9,0.4);
+        }
+
+        /* Hamburger */
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px 4px;
+        }
+        .menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all var(--ease);
+        }
+
+        /* Mobile nav panel */
+        .mobile-nav {
+            position: fixed;
+            top: var(--header-h);
+            inset-inline: 0;
+            background: var(--navy-dark);
+            padding: 20px 28px 28px;
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 999;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        .mobile-nav.open { display: flex; }
+
+        .mobile-nav a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            font-size: 1rem;
+            transition: color var(--ease);
+        }
+        .mobile-nav a:hover { color: var(--gold-light); }
+
+        .btn-mobile-cta {
+            background: var(--gold);
+            color: var(--navy-dark) !important;
+            padding: 13px 20px !important;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            font-weight: 600 !important;
+            margin-top: 12px;
+            border-bottom: none !important;
+        }
+        .btn-mobile-cta:hover {
+            background: var(--gold-light) !important;
+            color: var(--navy-dark) !important;
+        }
+
+        /* ============================================================
+           HERO
+        ============================================================ */
+        #inicio {
+            min-height: 100vh;
+            padding-top: var(--header-h);
+            background:
+                linear-gradient(105deg, rgba(11,11,40,0.94) 0%, rgba(11,11,40,0.80) 55%, rgba(11,11,40,0.62) 100%),
+                url('https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?fm=jpg&q=85&w=1920&auto=format&fit=crop') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Pauta musical decorativa (linhas de pentagrama) */
+        .staff-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 30px,
+                rgba(196,146,9,0.07) 30px,
+                rgba(196,146,9,0.07) 31px
+            );
+        }
+
+        /* Gradiente radial central para profundidade */
+        .hero-glow {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse 80% 70% at 30% 50%, rgba(30,30,100,0.6) 0%, transparent 70%),
+                        radial-gradient(ellipse 50% 60% at 80% 80%, rgba(196,146,9,0.06) 0%, transparent 60%);
+        }
+
+        /* Clave de sol decorativa grande */
+        .deco-treble {
+            position: absolute;
+            right: 4%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 52vw;
+            line-height: 1;
+            color: rgba(196,146,9,0.04);
+            font-family: var(--ff-display);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* Notas musicais flutuantes */
+        .float-note {
+            position: absolute;
+            font-size: inherit;
+            color: rgba(226, 170, 26, 0.12);
+            pointer-events: none;
+            user-select: none;
+            animation: rise linear infinite;
+        }
+        @keyframes rise {
+            0%   { transform: translateY(110vh) rotate(0deg);  opacity: 0; }
+            8%   { opacity: 1; }
+            92%  { opacity: 1; }
+            100% { transform: translateY(-12vh)  rotate(20deg); opacity: 0; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 28px 100px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(196,146,9,0.12);
+            border: 1px solid rgba(196,146,9,0.28);
+            color: var(--gold-light);
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 6px 18px;
+            border-radius: 100px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--ff-display);
+            font-size: clamp(3.8rem, 8.5vw, 7.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.04;
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+        }
+        .hero-content h1 em {
+            color: var(--gold-light);
+            font-style: italic;
+        }
+
+        .hero-content h2 {
+            font-family: var(--ff-display);
+            font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+            font-weight: 300;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 24px;
+            letter-spacing: 0.04em;
+            font-style: italic;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.5);
+            max-width: 540px;
+            line-height: 1.85;
+            margin-bottom: 44px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Botões primário / secundário */
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 14px 32px;
+            border-radius: var(--radius-sm);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.025em;
+            transition: background var(--ease), box-shadow var(--ease), color var(--ease);
+        }
+        .btn-primary:hover {
+            background: var(--gold-light);
+            color: var(--navy-dark);
+            box-shadow: 0 8px 28px rgba(196,146,9,0.38);
+        }
+
+        .btn-ghost {
+            background: rgba(255,255,255,0.07);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 14px 32px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255,255,255,0.22);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: background var(--ease), border-color var(--ease), color var(--ease);
+        }
+        .btn-ghost:hover {
+            background: rgba(255,255,255,0.14);
+            border-color: rgba(255,255,255,0.45);
+            color: var(--white);
+        }
+
+        /* Estatísticas no hero */
+        .hero-stats {
+            display: flex;
+            gap: 52px;
+            margin-top: 68px;
+            padding-top: 36px;
+            border-top: 1px solid rgba(255,255,255,0.09);
+        }
+        .stat-num {
+            font-family: var(--ff-display);
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+        .stat-lbl {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.42);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ============================================================
+           SEPARADORES DE ONDA
+        ============================================================ */
+        .wave { width: 100%; overflow: hidden; line-height: 0; margin-bottom: -1px; }
+        .wave svg { display: block; width: 100%; }
+
+        /* ============================================================
+           SEÇÕES — PADRÕES COMUNS
+        ============================================================ */
+        section { padding: 100px 0; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.73rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .section-eyebrow::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-family: var(--ff-display);
+            font-size: clamp(2rem, 3.8vw, 3rem);
+            font-weight: 600;
+            color: var(--navy);
+            line-height: 1.18;
+            margin-bottom: 18px;
+        }
+        .section-title em { color: var(--gold); font-style: italic; }
+
+        .section-lead {
+            font-size: 1.02rem;
+            color: var(--gray-text);
+            max-width: 580px;
+            line-height: 1.85;
+        }
+
+        /* ============================================================
+           SISTEMA DE ANIMAÇÕES
+        ============================================================ */
+
+        /* --- Keyframes globais --- */
+        @keyframes fade-up   { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fade-left { from { opacity:0; transform:translateX(-32px); } to { opacity:1; transform:translateX(0); } }
+        @keyframes fade-right{ from { opacity:0; transform:translateX(32px);  } to { opacity:1; transform:translateX(0); } }
+        @keyframes scale-in  { from { opacity:0; transform:scale(0.88); }       to { opacity:1; transform:scale(1); } }
+        @keyframes shimmer {
+            0%   { background-position: -200% center; }
+            100% { background-position:  200% center; }
+        }
+        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes gold-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(196,146,9,0); }
+            50%       { box-shadow: 0 0 0 6px rgba(196,146,9,0.2); }
+        }
+        @keyframes bar-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+        /* --- Classes de reveal (disparadas pelo JS via IntersectionObserver) --- */
+        .reveal        { opacity:0; transform:translateY(26px);  transition: opacity 0.7s cubic-bezier(.22,.68,0,1.2), transform 0.7s cubic-bezier(.22,.68,0,1.2); }
+        .reveal-left   { opacity:0; transform:translateX(-32px); transition: opacity 0.7s cubic-bezier(.22,.68,0,1.2), transform 0.7s cubic-bezier(.22,.68,0,1.2); }
+        .reveal-right  { opacity:0; transform:translateX( 32px); transition: opacity 0.7s cubic-bezier(.22,.68,0,1.2), transform 0.7s cubic-bezier(.22,.68,0,1.2); }
+        .reveal-scale  { opacity:0; transform:scale(0.9);        transition: opacity 0.65s ease, transform 0.65s cubic-bezier(.34,1.56,.64,1); }
+
+        .reveal.in, .reveal-left.in, .reveal-right.in, .reveal-scale.in {
+            opacity:1; transform:translateY(0) translateX(0) scale(1);
+        }
+
+        .d1  { transition-delay: 0.10s; }
+        .d2  { transition-delay: 0.20s; }
+        .d3  { transition-delay: 0.30s; }
+        .d4  { transition-delay: 0.40s; }
+        .d5  { transition-delay: 0.50s; }
+        .d6  { transition-delay: 0.60s; }
+        .d7  { transition-delay: 0.70s; }
+        .d8  { transition-delay: 0.80s; }
+
+        /* --- Shimmer no eyebrow de seção --- */
+        .section-eyebrow {
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 40%, var(--gold) 80%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+        .section-eyebrow::before { background: var(--gold-light); }
+
+        /* Sobrescreve para seção #valores */
+        #valores .section-eyebrow {
+            background: linear-gradient(90deg, var(--gold-light) 0%, #fff 40%, var(--gold-light) 80%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Underline animado nos títulos de seção --- */
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title.in::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 48px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 2px;
+            animation: bar-grow 0.6s 0.3s both cubic-bezier(.22,.68,0,1.2);
+            transform-origin: left;
+        }
+        #valores .section-title.in::after { background: var(--gold-light); }
+
+        /* --- Hover nas info-cards com animação gold-pulse --- */
+        .info-card:hover { animation: gold-pulse 1.2s ease infinite; }
+
+        /* --- Hover nos valor-cards: spin do ícone --- */
+        .valor-card:hover .valor-icon svg {
+            transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+            transform: rotate(15deg) scale(1.2);
+        }
+
+/* --- Botão primary: brilho ao hover --- */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+        .btn-primary:hover::after { transform: translateX(100%); }
+
+        /* --- Curso card: label tag desliza ao hover --- */
+        .curso-tag {
+            transition: background var(--ease), color var(--ease), transform 0.3s ease;
+        }
+        .curso-card:hover .curso-tag {
+            background: var(--navy);
+            color: var(--gold-light);
+            transform: translateX(4px);
+        }
+
+        /* --- Stat counter shimmer no hero --- */
+        .stat-num {
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-stats.in .stat-num {
+            animation: shimmer 2.5s linear infinite;
+        }
+
+        /* --- Social buttons: escala ao hover --- */
+        .social-btn {
+            transition: background var(--ease), color var(--ease), border-color var(--ease), transform 0.25s cubic-bezier(.34,1.56,.64,1);
+        }
+        .social-btn:hover { transform: translateY(-3px) scale(1.1); }
+
+        /* --- MV cards: borda dourada cresce no hover --- */
+        .mv-card {
+            border-left-width: 4px;
+            transition: box-shadow var(--ease), transform var(--ease), border-left-width var(--ease);
+        }
+        .mv-card:hover { border-left-width: 6px; }
+
+        /* ============================================================
+           SEÇÃO: SOBRE
+        ============================================================ */
+        #sobre { background: var(--off-white); }
+
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-top: 60px;
+        }
+
+        .sobre-foto {
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 32px;
+            box-shadow: 0 12px 48px rgba(19,19,58,0.14);
+        }
+        .sobre-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .sobre-foto:hover img { transform: scale(1.03); }
+
+        .sobre-text p {
+            font-size: 1rem;
+            color: var(--gray-text);
+            line-height: 1.9;
+            margin-bottom: 22px;
+        }
+
+        .sobre-cards { display: flex; flex-direction: column; gap: 20px; }
+
+        .mv-card {
+            background: var(--white);
+            border-left: 4px solid var(--gold);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: 28px 30px;
+            box-shadow: 0 2px 18px rgba(19,19,58,0.06);
+            transition: box-shadow var(--ease), transform var(--ease);
+        }
+        .mv-card:hover {
+            box-shadow: 0 8px 32px rgba(19,19,58,0.12);
+            transform: translateX(5px);
+        }
+
+        .mv-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(196,146,9,0.1);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+        .mv-card h3 {
+            font-family: var(--ff-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+        .mv-card p { font-size: 0.9rem; color: var(--gray-text); line-height: 1.8; }
+
+        /* ============================================================
+           SEÇÃO: VALORES
+        ============================================================ */
+        #valores {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #valores::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                url('https://images.unsplash.com/photo-1556379118-7034d926d258?fm=jpg&q=60&w=1920&auto=format&fit=crop') center/cover no-repeat;
+            opacity: 0.06;
+        }
+
+        #valores::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 32px,
+                rgba(255,255,255,0.025) 32px,
+                rgba(255,255,255,0.025) 33px
+            );
+        }
+
+        #valores .section-eyebrow { color: var(--gold-light); }
+        #valores .section-eyebrow::before { background: var(--gold-light); }
+        #valores .section-title { color: var(--white); }
+        #valores .section-title em { color: var(--gold-light); }
+        #valores .section-lead { color: rgba(255,255,255,0.5); }
+
+        .valores-header { position: relative; z-index: 2; max-width: 600px; }
+
+        .valores-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-top: 54px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .valor-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: var(--radius-md);
+            padding: 28px 20px;
+            text-align: center;
+            transition: background var(--ease), border-color var(--ease), transform var(--ease);
+        }
+        .valor-card:hover {
+            background: rgba(196,146,9,0.09);
+            border-color: rgba(196,146,9,0.28);
+            transform: translateY(-5px);
+        }
+
+        .valor-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(196,146,9,0.13);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .valor-card h3 {
+            font-family: var(--ff-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.4;
+        }
+
+        /* ============================================================
+           SEÇÃO: SERVIÇOS / CURSOS
+        ============================================================ */
+        #servicos { background: var(--white); }
+
+        .cursos-banner {
+            width: 100%;
+            height: 280px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin: 48px 0 0;
+            position: relative;
+            box-shadow: 0 12px 48px rgba(19,19,58,0.12);
+        }
+        .cursos-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 60%;
+            display: block;
+        }
+        .cursos-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(19,19,58,0.72) 0%, rgba(19,19,58,0.3) 60%, transparent 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 48px;
+        }
+        .cursos-banner-overlay p {
+            font-family: var(--ff-display);
+            font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--white);
+            max-width: 500px;
+            line-height: 1.4;
+        }
+        .cursos-banner-overlay p em {
+            color: var(--gold-light);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 54px;
+        }
+
+        .curso-card {
+            background: var(--off-white);
+            border-radius: var(--radius-lg);
+            padding: 36px 30px;
+            position: relative;
+            overflow: hidden;
+            transition: transform var(--ease), box-shadow var(--ease);
+        }
+        .curso-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--ease);
+        }
+        .curso-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 52px rgba(19,19,58,0.1);
+        }
+        .curso-card:hover::after { transform: scaleX(1); }
+
+        .curso-icon {
+            width: 54px;
+            height: 54px;
+            background: var(--navy);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .curso-card h3 {
+            font-family: var(--ff-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+        .curso-card p {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            line-height: 1.85;
+            margin-bottom: 22px;
+        }
+        .curso-tag {
+            display: inline-block;
+            background: rgba(196,146,9,0.11);
+            color: var(--gold);
+            font-size: 0.76rem;
+            font-weight: 600;
+            padding: 4px 13px;
+            border-radius: 100px;
+            letter-spacing: 0.06em;
+        }
+
+        /* ============================================================
+           SEÇÃO: CONTATO
+        ============================================================ */
+        #contato { background: var(--off-white); }
+
+        .contato-grid {
+            margin-top: 54px;
+        }
+
+        .contato-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .info-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 22px 24px;
+            box-shadow: 0 2px 14px rgba(19,19,58,0.05);
+            transition: box-shadow var(--ease), transform var(--ease);
+        }
+        .info-card:hover {
+            box-shadow: 0 6px 24px rgba(19,19,58,0.1);
+            transform: translateX(4px);
+        }
+
+        .info-ic {
+            width: 44px;
+            height: 44px;
+            background: var(--navy);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .info-body strong {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+        .info-body p, .info-body a {
+            font-size: 0.93rem;
+            color: var(--navy);
+            line-height: 1.65;
+            text-decoration: none;
+        }
+        .info-body a:hover { color: var(--gold); }
+
+
+        /* ============================================================
+           RODAPÉ
+        ============================================================ */
+        footer {
+            background: var(--navy-dark);
+            color: rgba(255,255,255,0.6);
+            padding: 64px 0 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 52px;
+            margin-bottom: 52px;
+        }
+
+        .footer-brand .logo { margin-bottom: 18px; }
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.85;
+            color: rgba(255,255,255,0.42);
+            max-width: 300px;
+        }
+
+        .socials {
+            display: flex;
+            gap: 10px;
+            margin-top: 26px;
+        }
+        .social-btn {
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: rgba(255,255,255,0.55);
+            transition: background var(--ease), color var(--ease), border-color var(--ease);
+        }
+        .social-btn:hover {
+            background: var(--gold);
+            color: var(--navy-dark);
+            border-color: var(--gold);
+        }
+
+        .footer-col h4 {
+            font-family: var(--ff-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 22px;
+        }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-links a {
+            color: rgba(255,255,255,0.48);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--ease);
+        }
+        .footer-links a:hover { color: var(--gold-light); }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.07);
+            padding-top: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.26); }
+        .footer-bottom a { color: inherit; text-decoration: none; }
+
+        /* ============================================================
+           BOTÃO FLUTUANTE WHATSAPP
+        ============================================================ */
+        .wa-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 9990;
+            width: 54px;
+            height: 54px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 18px rgba(37,211,102,0.38);
+            transition: background var(--ease), box-shadow var(--ease), transform var(--ease);
+        }
+        .wa-float:hover {
+            background: #1eb958;
+            box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+            transform: scale(1.06);
+        }
+
+        /* ============================================================
+           RESPONSIVO
+        ============================================================ */
+        @media (max-width: 1024px) {
+            .valores-grid   { grid-template-columns: repeat(2, 1fr); }
+            .servicos-grid  { grid-template-columns: repeat(2, 1fr); }
+            .sobre-grid     { gap: 48px; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --header-h: 64px; }
+            section { padding: 72px 0; }
+
+            .main-nav, .btn-header { display: none; }
+            .menu-btn { display: flex; }
+
+            .hero-stats    { gap: 28px; flex-wrap: wrap; }
+            .hero-ctas     { flex-direction: column; }
+
+            .sobre-grid,
+            .footer-grid   { grid-template-columns: 1fr; gap: 36px; }
+
+            .contato-info  { grid-template-columns: 1fr; }
+
+            .servicos-grid { grid-template-columns: 1fr; }
+            .valores-grid  { grid-template-columns: repeat(2, 1fr); }
+
+            .cursos-banner { height: 200px; }
+            .cursos-banner-overlay { padding: 0 24px; }
+        }
+
+        @media (max-width: 1024px) {
+            .contato-info { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .valores-grid  { grid-template-columns: 1fr; }
+            .contato-info  { grid-template-columns: 1fr; }
+            .sobre-foto    { aspect-ratio: 16/9; }
+        }
+
+        /* ============================================================
+           TABELA DE PRODUTOS
+        ============================================================ */
+        .produtos-table-wrap {
+            margin-top: 60px;
+        }
+
+        .produtos-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(19,19,58,0.08);
+        }
+
+        .produtos-table thead tr {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .produtos-table thead th {
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+        }
+
+        .produtos-table thead th:last-child {
+            text-align: right;
+        }
+
+        .produtos-table tbody tr {
+            border-bottom: 1px solid var(--gray-light);
+            transition: background var(--ease);
+        }
+
+        .produtos-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .produtos-table tbody tr:nth-child(even) {
+            background: var(--off-white);
+        }
+
+        .produtos-table tbody tr:hover {
+            background: rgba(196,146,9,0.06);
+        }
+
+        .produtos-table td {
+            padding: 12px 18px;
+            color: var(--text-dark);
+            vertical-align: middle;
+        }
+
+        .produtos-table td:first-child {
+            font-size: 0.78rem;
+            color: var(--gray-text);
+            font-weight: 500;
+            width: 54px;
+        }
+
+        .produtos-table td:last-child {
+            text-align: right;
+            font-weight: 600;
+            color: var(--navy);
+            white-space: nowrap;
+        }
+
+        .produtos-table-scroll {
+            overflow-x: auto;
+            border-radius: var(--radius-md);
+        }
+
+        @media (max-width: 600px) {
+            .produtos-table thead th,
+            .produtos-table td { padding: 10px 12px; }
+            .produtos-table { font-size: 0.84rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================================================================
+     HEADER
+================================================================ -->
+<header id="header" role="banner">
+    <div class="header-inner">
+        <a href="#inicio" class="logo" aria-label="Espaço Musical — página inicial">
+            <img src="1780749956685_img_20260528_wa0006.jpg" alt="Espaço Musical">
+        </a>
+
+        <nav class="main-nav" aria-label="Menu principal">
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Acessórios</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+        <a href="https://wa.me/5514997140067" class="btn-header" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+            Fale conosco
+        </a>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- Mobile nav -->
+<nav class="mobile-nav" id="mobileNav" aria-label="Menu mobile">
+    <a href="#inicio"   class="nav-link">Início</a>
+    <a href="#sobre"    class="nav-link">Sobre</a>
+    <a href="#servicos" class="nav-link">Acessórios</a>
+    <a href="#contato"  class="nav-link">Contato</a>
+    <a href="https://wa.me/5514997140067" class="btn-mobile-cta nav-link" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+</nav>
+
+<!-- ================================================================
+     HERO
+================================================================ -->
+<section id="inicio" aria-label="Início">
+    <div class="staff-bg" aria-hidden="true"></div>
+    <div class="hero-glow"  aria-hidden="true"></div>
+    <div class="deco-treble" aria-hidden="true">𝄞</div>
+
+    <!-- Notas flutuantes decorativas -->
+    <span class="float-note" style="font-size:1.6rem;left:8%; animation-duration:14s;animation-delay:0s"   aria-hidden="true">♩</span>
+    <span class="float-note" style="font-size:2.1rem;left:22%;animation-duration:18s;animation-delay:5s"   aria-hidden="true">♫</span>
+    <span class="float-note" style="font-size:1.3rem;left:50%;animation-duration:12s;animation-delay:9s"   aria-hidden="true">♪</span>
+    <span class="float-note" style="font-size:1.8rem;left:65%;animation-duration:20s;animation-delay:2s"   aria-hidden="true">♬</span>
+    <span class="float-note" style="font-size:1.1rem;left:85%;animation-duration:16s;animation-delay:7s"   aria-hidden="true">𝅘𝅥𝅮</span>
+
+    <div class="hero-content">
+        <div class="hero-badge reveal" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            Acessórios Musicais — Itatinga, SP
+        </div>
+
+        <h1 class="reveal d1">
+            Espaço<br><em>Musical</em>
+        </h1>
+
+        <h2 class="reveal d2">Tudo que o seu instrumento precisa</h2>
+
+        <p class="hero-desc reveal d2">
+            Acessórios musicais de qualidade para cordas, sopros e muito mais. Atendemos músicos iniciantes e experientes com variedade, preço justo e atendimento personalizado.
+        </p>
+
+        <div class="hero-ctas reveal d3">
+            <a href="https://wa.me/5514997140067" class="btn-primary" target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                Fale conosco no WhatsApp
+            </a>
+            <a href="#servicos" class="btn-ghost" aria-label="Ver os acessórios disponíveis">
+                Ver acessórios
+            </a>
+        </div>
+
+        <div class="hero-stats reveal d4" aria-label="Destaques do Espaço Musical">
+            <div>
+                <div class="stat-num">+10</div>
+                <div class="stat-lbl">Categorias</div>
+            </div>
+            <div>
+                <div class="stat-num">100%</div>
+                <div class="stat-lbl">Qualidade</div>
+            </div>
+            <div>
+                <div class="stat-num">∞</div>
+                <div class="stat-lbl">Paixão pela música</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Onda entre Hero → Sobre -->
+<div class="wave" aria-hidden="true" style="background:var(--navy-dark);">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,32 C480,64 960,0 1440,32 L1440,64 L0,64 Z" fill="#f8f7f4"/>
+    </svg>
+</div>
+
+<!-- ================================================================
+     SOBRE
+================================================================ -->
+<section id="sobre" aria-labelledby="sobre-titulo">
+    <div class="container">
+        <span class="section-eyebrow reveal">Nossa história</span>
+        <h2 class="section-title reveal d1" id="sobre-titulo">Sobre o <em>Espaço Musical</em></h2>
+
+        <div class="sobre-grid">
+            <div class="sobre-text">
+                <figure class="sobre-foto reveal-left">
+                    <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?fm=jpg&q=80&w=900&auto=format&fit=crop"
+                         alt="Professor ensinando violão para aluno no Espaço Musical">
+                </figure>
+                <p class="reveal">
+                    O Espaço Musical nasceu de uma paixão genuína pela música e pelo desejo de servir músicos de todos os estilos e níveis. Nosso foco é oferecer acessórios musicais de qualidade, com variedade e atendimento próximo — para que você encontre tudo o que precisa para o seu instrumento.
+                </p>
+                <p class="reveal d1">
+                    Acreditamos que a música transforma vidas, e um bom acessório faz toda a diferença na sua performance e prazer em tocar. Por isso, selecionamos produtos confiáveis para cordas, sopros e muito mais.
+                </p>
+                <p class="reveal d2">
+                    Localizado na Rua Luiz Candido Sampaio, 140 – Jardim Cidade Serrana, Itatinga – SP, o Espaço Musical atende músicos iniciantes, intermediários e profissionais com cuidado, dedicação e amor pelo que fazemos.
+                </p>
+                <a href="https://wa.me/5514997140067" class="btn-primary reveal d3" style="margin-top:8px;width:fit-content;" target="_blank" rel="noopener noreferrer">
+                    Fale com a gente
+                </a>
+            </div>
+
+            <div class="sobre-cards">
+                <div class="mv-card reveal-right d1">
+                    <div class="mv-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c49209" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>Nossa missão</h3>
+                    <p>Oferecer acessórios musicais de qualidade com atendimento próximo e preço justo, ajudando músicos de todos os níveis a encontrar o que precisam para tocar cada vez melhor.</p>
+                </div>
+                <div class="mv-card reveal-right d2">
+                    <div class="mv-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c49209" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <h3>Nossa visão</h3>
+                    <p>Ser referência regional na venda de acessórios musicais, reconhecidos pela variedade de produtos, atendimento personalizado e pelo amor genuíno à música que nos move a cada dia.</p>
+                </div>
+
+                <div class="mv-card reveal-right d3">
+                    <div class="mv-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c49209" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <h3>Nossos valores</h3>
+                    <ul style="font-size:0.9rem;color:var(--gray-text);line-height:2;list-style:none;padding:0;margin:0;">
+                        <li>♩ Amor e paixão pela música</li>
+                        <li>♩ Ética e respeito nas relações</li>
+                        <li>♩ Comprometimento com a qualidade</li>
+                        <li>♩ Criatividade e inovação</li>
+                        <li>♩ Inclusão e acessibilidade</li>
+                        <li>♩ Responsabilidade social e cultural</li>
+                        <li>♩ Valorização do talento humano</li>
+                        <li>♩ Trabalho em equipe e colaboração</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Onda Sobre → Acessórios -->
+<div class="wave" aria-hidden="true" style="background:var(--off-white);">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,32 C480,64 960,0 1440,32 L1440,64 L0,64 Z" fill="white"/>
+    </svg>
+</div>
+
+<!-- ================================================================
+     SERVIÇOS / CURSOS
+================================================================ -->
+<section id="servicos" aria-labelledby="servicos-titulo">
+    <div class="container">
+        <span class="section-eyebrow reveal">O que oferecemos</span>
+        <h2 class="section-title reveal d1" id="servicos-titulo">Acessórios por <em>instrumento</em></h2>
+        <p class="section-lead reveal d2">Uma linha completa de acessórios musicais dividida por instrumento para você encontrar exatamente o que precisa.</p>
+
+        <div class="cursos-banner reveal">
+            <img src="https://images.unsplash.com/photo-1685672275928-062f46c86c58?fm=jpg&q=80&w=1920&auto=format&fit=crop"
+                 alt="Acessórios musicais — violino e instrumentos">
+            <div class="cursos-banner-overlay">
+                <p>O acessório certo faz toda a diferença.<br><em>Encontre o seu aqui.</em></p>
+            </div>
+        </div>
+
+        <!-- CORDAS -->
+        <div style="margin-top:60px;">
+            <span class="section-eyebrow reveal" style="margin-bottom:16px;">Instrumentos de corda</span>
+            <h3 class="reveal d1" style="font-family:var(--ff-display);font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:600;color:var(--navy);margin-bottom:10px;"><em style="color:var(--gold);font-style:italic;">Cordas</em> para instrumentos</h3>
+            <p class="reveal d2" style="font-size:1rem;color:var(--gray-text);max-width:580px;line-height:1.85;margin-bottom:32px;">Cordas para todos os estilos e instrumentos de corda, do iniciante ao músico profissional.</p>
+
+            <div class="servicos-grid">
+
+                <article class="curso-card reveal-scale">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    </div>
+                    <h3>Cordas para Violino</h3>
+                    <p>Cordas de qualidade para violino, breu (rosin) e demais acessórios essenciais para o cuidado e a manutenção do instrumento.</p>
+                    <span class="curso-tag">Violino</span>
+                </article>
+
+                <article class="curso-card reveal-scale d1">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    </div>
+                    <h3>Cordas para Violão</h3>
+                    <p>Cordas de nylon e aço para violão, em diferentes bitolas e marcas reconhecidas. Ideais para MPB, sertanejo, clássico e muito mais.</p>
+                    <span class="curso-tag">Violão</span>
+                </article>
+
+                <article class="curso-card reveal-scale d2">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    </div>
+                    <h3>Cordas para Violoncelo</h3>
+                    <p>Cordas específicas para violoncelo, breu e acessórios para o cuidado do arco e do instrumento, garantindo qualidade sonora e durabilidade.</p>
+                    <span class="curso-tag">Violoncelo</span>
+                </article>
+
+                <article class="curso-card reveal-scale d3">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    </div>
+                    <h3>Cordas para Contrabaixo Acústico</h3>
+                    <p>Cordas para contrabaixo acústico de orquestra, com opções para arco e pizzicato, em diferentes materiais e calibres.</p>
+                    <span class="curso-tag">Contrabaixo Acústico</span>
+                </article>
+
+                <article class="curso-card reveal-scale d4">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    </div>
+                    <h3>Cordas para Bandolim</h3>
+                    <p>Cordas duplas para bandolim em aço ou bronze, para os estilos choro, sertanejo, forró e música italiana. Variedade de bitolas disponíveis.</p>
+                    <span class="curso-tag">Bandolim</span>
+                </article>
+
+                <article class="curso-card reveal-scale d5">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    </div>
+                    <h3>Cordas para Cavaco</h3>
+                    <p>Cordas para cavaquinho, instrumento essencial do choro e do samba. Opções em nylon e aço, com diferentes combinações de bitola.</p>
+                    <span class="curso-tag">Cavaquinho</span>
+                </article>
+
+            </div>
+        </div>
+
+        <!-- PALHETAS -->
+        <div style="margin-top:60px;">
+            <span class="section-eyebrow reveal" style="margin-bottom:16px;">Instrumentos de sopro</span>
+            <h3 class="reveal d1" style="font-family:var(--ff-display);font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:600;color:var(--navy);margin-bottom:10px;"><em style="color:var(--gold);font-style:italic;">Palhetas</em> para sopros</h3>
+            <p class="reveal d2" style="font-size:1rem;color:var(--gray-text);max-width:580px;line-height:1.85;margin-bottom:32px;">Palhetas e acessórios para instrumentos de sopro, garantindo melhor sonoridade e conforto ao tocar.</p>
+
+            <div class="servicos-grid">
+
+                <article class="curso-card reveal-scale">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </div>
+                    <h3>Palhetas para Saxofone</h3>
+                    <p>Palhetas simples em diferentes numerações (1½ a 4) para saxofone alto, tenor, soprano e barítono. Marcas tradicionais e de alto desempenho.</p>
+                    <span class="curso-tag">Saxofone</span>
+                </article>
+
+                <article class="curso-card reveal-scale d1">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </div>
+                    <h3>Palhetas para Clarinete</h3>
+                    <p>Palhetas simples em variadas espessuras para clarinete Bb e baixo clarinete. Excelente resposta e projeção sonora para todos os estilos.</p>
+                    <span class="curso-tag">Clarinete</span>
+                </article>
+
+                <article class="curso-card reveal-scale d2">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </div>
+                    <h3>Palhetas para Oboé e Fagote</h3>
+                    <p>Palhetas duplas e acessórios específicos para oboé e fagote, instrumentos de sopro da família dos sopros de palheta dupla.</p>
+                    <span class="curso-tag">Oboé · Fagote</span>
+                </article>
+
+            </div>
+        </div>
+
+        <!-- ACESSÓRIOS EM GERAL -->
+        <div style="margin-top:60px;">
+            <span class="section-eyebrow reveal" style="margin-bottom:16px;">Para todos os instrumentos</span>
+            <h3 class="reveal d1" style="font-family:var(--ff-display);font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:600;color:var(--navy);margin-bottom:10px;">Acessórios <em style="color:var(--gold);font-style:italic;">em geral</em></h3>
+            <p class="reveal d2" style="font-size:1rem;color:var(--gray-text);max-width:580px;line-height:1.85;margin-bottom:32px;">Itens essenciais para o dia a dia do músico — seja qual for o seu instrumento.</p>
+
+            <div class="servicos-grid">
+
+                <article class="curso-card reveal-scale">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <h3>Afinadores e Metrônomos</h3>
+                    <p>Afinadores digitais e metrônomos para manter sua afinação e pulsação sempre precisas, em estúdio ou no palco.</p>
+                    <span class="curso-tag">Afinação e ritmo</span>
+                </article>
+
+                <article class="curso-card reveal-scale d1">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                    </div>
+                    <h3>Estojos e Cases</h3>
+                    <p>Estojos e bags para transporte e proteção de instrumentos: violão, violino, violoncelo, bandolim e mais. Segurança para o seu instrumento.</p>
+                    <span class="curso-tag">Proteção e transporte</span>
+                </article>
+
+                <article class="curso-card reveal-scale d2">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                    </div>
+                    <h3>Suportes e Estantes</h3>
+                    <p>Suportes para instrumentos, estantes para partitura e braçadeiras — tudo para organizar seu espaço de ensaio com praticidade.</p>
+                    <span class="curso-tag">Organização</span>
+                </article>
+
+                <article class="curso-card reveal-scale d3">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    </div>
+                    <h3>Capotrastes e Slides</h3>
+                    <p>Capotrastes para violão e guitarra, slides e bottlenecks para diferentes estilos musicais. Expanda as possibilidades do seu instrumento.</p>
+                    <span class="curso-tag">Violão · Guitarra</span>
+                </article>
+
+                <article class="curso-card reveal-scale d4">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3>Limpeza e Manutenção</h3>
+                    <p>Panos de limpeza, óleos para braço, polidor de corpo e tudo o que você precisa para manter seu instrumento em perfeito estado.</p>
+                    <span class="curso-tag">Conservação</span>
+                </article>
+
+                <article class="curso-card reveal-scale d5">
+                    <div class="curso-icon" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>Outros Acessórios</h3>
+                    <p>Correia, capoeira de troca-rápida, pinos de correia, baquetas, peles e muito mais. Fale conosco para consultar disponibilidade.</p>
+                    <a href="https://wa.me/5514997140067" class="curso-tag" style="text-decoration:none;display:inline-block;margin-top:4px;" target="_blank" rel="noopener noreferrer">Consultar pelo WhatsApp</a>
+                </article>
+
+            </div>
+        </div>
+
+        <!-- Impressão 3D -->
+        <div style="margin-top:60px;">
+            <span class="section-eyebrow reveal" style="margin-bottom:16px;">Serviço extra</span>
+            <h3 class="reveal d1" style="font-family:var(--ff-display);font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:600;color:var(--navy);margin-bottom:10px;">Impressão <em style="color:var(--gold);font-style:italic;">3D</em></h3>
+            <p class="reveal d2" style="font-size:1rem;color:var(--gray-text);max-width:580px;line-height:1.85;margin-bottom:32px;">Também oferecemos serviço de impressão 3D. Peças personalizadas e acessórios produzidos sob demanda — entre em contato para saber o que podemos fazer para você.</p>
+            <article class="curso-card reveal-scale" style="max-width:380px;">
+                <div class="curso-icon" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3>Impressão 3D</h3>
+                <p>Produção de peças e objetos personalizados sob demanda. Fale conosco e descubra as possibilidades.</p>
+                <a href="https://wa.me/5514997140067" class="curso-tag" style="text-decoration:none;display:inline-block;margin-top:4px;" target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+            </article>
+        </div>
+
+        <!-- TABELA DE PRODUTOS -->
+        <div class="produtos-table-wrap reveal">
+            <span class="section-eyebrow" style="margin-bottom:16px;">Preços</span>
+            <h3 class="reveal d1" style="font-family:var(--ff-display);font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:600;color:var(--navy);margin-bottom:10px;">Tabela de <em style="color:var(--gold);font-style:italic;">produtos</em></h3>
+            <p class="reveal d2" style="font-size:1rem;color:var(--gray-text);max-width:580px;line-height:1.85;margin-bottom:32px;">Confira abaixo alguns dos produtos disponíveis. Para consultar disponibilidade ou fazer seu pedido, fale conosco pelo WhatsApp.</p>
+
+            <div class="produtos-table-scroll reveal d1">
+                <table class="produtos-table" aria-label="Tabela de produtos com preços">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cód.</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>13</td><td>Afinador Cromático Digital TUNER SFT75</td><td>R$ 33,00</td></tr>
+                        <tr><td>32</td><td>Breu Grace para Instrumentos de Arco</td><td>R$ 20,00</td></tr>
+                        <tr><td>15</td><td>Capotraste p/ Violão em liga de Zinco Prata</td><td>R$ 37,00</td></tr>
+                        <tr><td>14</td><td>Capotraste p/ Violão em liga de Zinco Preta</td><td>R$ 37,00</td></tr>
+                        <tr><td>28</td><td>Cavalete Violino Tarttan 4/4 KIT</td><td>R$ 21,00</td></tr>
+                        <tr><td>27</td><td>Corda Violino Erudithus Kit com 2 MI E e 1 La A</td><td>R$ 39,00</td></tr>
+                        <tr><td>16</td><td>Correia Almofadada 7cm c/ 1.50m — couro sint.</td><td>R$ 37,00</td></tr>
+                        <tr><td>33</td><td>Correia Almofadada simples</td><td>R$ 35,00</td></tr>
+                        <tr><td>18</td><td>Encordoamento Canário em Nylon com bolinha para Violão</td><td>R$ 32,00</td></tr>
+                        <tr><td>26</td><td>Encordoamento Erudithus para Violino 4/4</td><td>R$ 75,00</td></tr>
+                        <tr><td>10</td><td>Encordoamento Mauro Calixto para Viola de arco 4/4</td><td>R$ 81,00</td></tr>
+                        <tr><td>9</td><td>Encordoamento Mauro Calixto para Violino 4/4</td><td>R$ 61,00</td></tr>
+                        <tr><td>11</td><td>Encordoamento Mauro Calixto para Violoncelo 4/4</td><td>R$ 154,00</td></tr>
+                        <tr><td>17</td><td>Encordoamento Rouxinol em Nylon para Violão preta/dourada</td><td>R$ 22,00</td></tr>
+                        <tr><td>3</td><td>Estante para partitura</td><td>R$ 60,00</td></tr>
+                        <tr><td>7</td><td>Greace lubrificantes para cortiças e encaixes Paganini 4 ml</td><td>R$ 10,00</td></tr>
+                        <tr><td>6</td><td>Impressões 3D</td><td>Sob consulta</td></tr>
+                        <tr><td>29</td><td>Kit acessório para Violino Boxwood Antoni Marsale VL 42 Swiss 4/4</td><td>R$ 389,00</td></tr>
+                        <tr><td>12</td><td>Lubrificante para vara de Trombone Slide Oil 57 ml</td><td>R$ 43,00</td></tr>
+                        <tr><td>8</td><td>Óleo lubrificante para instrumentos musicais Paganini 30 ml</td><td>R$ 16,00</td></tr>
+                        <tr><td>19</td><td>Palheta Vandoren Tradicional 1,5 para Clarinete</td><td>R$ 50,00</td></tr>
+                        <tr><td>22</td><td>Palheta Vandoren Tradicional 2,0 para Sax Alto</td><td>R$ 66,00</td></tr>
+                        <tr><td>20</td><td>Protetor de boquilha Paganini com 6 Unidades</td><td>R$ 31,00</td></tr>
+                        <tr><td>2</td><td>Suporte para violão e guitarra</td><td>R$ 15,00</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Onda Cursos → Contato -->
+<div class="wave" aria-hidden="true" style="background:white;">
+    <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,32 C480,0 960,64 1440,32 L1440,64 L0,64 Z" fill="#f8f7f4"/>
+    </svg>
+</div>
+
+<!-- ================================================================
+     CONTATO
+================================================================ -->
+<section id="contato" aria-labelledby="contato-titulo">
+    <div class="container">
+        <span class="section-eyebrow reveal">Fale com a gente</span>
+        <h2 class="section-title reveal d1" id="contato-titulo">Entre em <em>contato</em></h2>
+        <p class="section-lead reveal d2">Tire suas dúvidas, consulte disponibilidade de produtos ou venha nos visitar. Estamos esperando por você.</p>
+
+        <div class="contato-grid">
+            <!-- Informações de contato -->
+            <div class="contato-info">
+
+                <div class="info-card reveal">
+                    <div class="info-ic" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 2.62h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.9-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.38 18z"/></svg>
+                    </div>
+                    <div class="info-body">
+                        <strong>WhatsApp / Telefone</strong>
+                        <a href="https://wa.me/5514997140067" target="_blank" rel="noopener noreferrer">(14) 99714-0067</a>
+                    </div>
+                </div>
+
+                <div class="info-card reveal d1">
+                    <div class="info-ic" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div class="info-body">
+                        <strong>E-mail</strong>
+                        <a href="mailto:rodrigo.itatinga@gmail.com">rodrigo.itatinga@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="info-card reveal d2">
+                    <div class="info-ic" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div class="info-body">
+                        <strong>Endereço</strong>
+                        <p>Rua Luiz Candido Sampaio, 140<br>Jardim Cidade Serrana<br>Itatinga – SP · CEP 18692-008</p>
+                    </div>
+                </div>
+
+                <div class="info-card reveal d3">
+                    <div class="info-ic" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div class="info-body">
+                        <strong>Horário de funcionamento</strong>
+                        <p>Segunda a Sábado<br>das 9h às 17h</p>
+                    </div>
+                </div>
+
+                <div class="info-card reveal d4">
+                    <div class="info-ic" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </div>
+                    <div class="info-body">
+                        <strong>Instagram</strong>
+                        <a href="https://instagram.com/espaco.musical86" target="_blank" rel="noopener noreferrer">@espaco.musical86</a>
+                    </div>
+                </div>
+
+                <div class="info-card reveal d5">
+                    <div class="info-ic" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e2aa1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                    </div>
+                    <div class="info-body">
+                        <strong>Formas de pagamento</strong>
+                        <p>PIX, Dinheiro, Cartão de Crédito ou Débito<br><span style="font-size:0.85em;color:var(--gray-text);">Chave PIX (CNPJ): 67.141.493/0001-50</span></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Mapa -->
+            <div class="reveal" style="margin-top:40px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 8px 32px rgba(19,19,58,0.1);height:360px;">
+                <iframe
+                    src="https://maps.google.com/maps?q=Rua+Luiz+Candido+Sampaio+140+Jardim+Cidade+Serrana+Itatinga+SP+18692-008&output=embed"
+                    width="100%"
+                    height="100%"
+                    style="border:0;display:block;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Localização do Espaço Musical — Jardim Cidade Serrana, Itatinga-SP"
+                    aria-label="Mapa com a localização do Espaço Musical">
+                </iframe>
+            </div>
+            <div class="reveal d1" style="margin-top:14px;text-align:right;">
+                <a href="https://maps.google.com/maps?q=Rua+Luiz+Candido+Sampaio+140+Jardim+Cidade+Serrana+Itatinga+SP+18692-008" target="_blank" rel="noopener noreferrer"
+                   style="font-size:0.85rem;color:var(--gold);text-decoration:none;font-weight:500;">
+                    Abrir no Google Maps ↗
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================
+     RODAPÉ
+================================================================ -->
+<footer role="contentinfo">
+    <div class="container">
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+                <a href="#inicio" class="logo" aria-label="Espaço Musical — voltar ao início">
+                    <img src="1780749956685_img_20260528_wa0006.jpg" alt="Espaço Musical">
+                </a>
+                <p>Acessórios musicais de qualidade para todos os instrumentos. Cordas, palhetas e muito mais — com atendimento próximo e preço justo. Itatinga – SP.</p>
+                <div class="socials">
+                    <a href="https://instagram.com/espaco.musical86" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram do Espaço Musical">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://wa.me/5514997140067" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="WhatsApp do Espaço Musical">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navegação</h4>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre nós</a></li>
+                    <li><a href="#servicos">Acessórios</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Informações</h4>
+                <ul class="footer-links">
+                    <li><a href="https://wa.me/5514997140067" target="_blank" rel="noopener noreferrer">(14) 99714-0067</a></li>
+                    <li><a href="mailto:rodrigo.itatinga@gmail.com">rodrigo.itatinga@gmail.com</a></li>
+                    <li><a href="#contato">Rua Luiz Candido Sampaio, 140<br>Jardim Cidade Serrana<br>Itatinga – SP · CEP 18692-008</a></li>
+                    <li><a href="#contato">Seg a Sáb — 9h às 17h</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Espaço Musical · CNPJ: 67.141.493/0001-50</p>
+            <p>Desenvolvido com ♪ para quem ama música</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ================================================================
+     BOTÃO FLUTUANTE WHATSAPP
+================================================================ -->
+<a href="https://wa.me/5514997140067"
+   class="wa-float"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Falar com o Espaço Musical pelo WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+</a>
+
+<!-- root div para rodapé MonteSite -->
+<div id="root"></div>
+
+<!-- Rodapé MonteSite - Atualização Automática -->
+<div id="montesite-footer-badge"></div>
+<script src="https://vaabpicspdbolvutnscp.supabase.co/functions/v1/get-footer-iframe"></script>
+
+<!-- ================================================================
+     JAVASCRIPT
+================================================================ -->
+<script>
+    /* --- Header scroll shadow --- */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    /* --- Menu mobile --- */
+    const menuBtn  = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+
+    menuBtn.addEventListener('click', () => {
+        const open = mobileNav.classList.toggle('open');
+        menuBtn.setAttribute('aria-expanded', open);
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            menuBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    /* --- Scroll reveal com IntersectionObserver --- */
+    const revealSelector = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .section-title';
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('in');
+                /* Shimmer nos stats do hero */
+                if (e.target.classList.contains('hero-stats')) {
+                    e.target.classList.add('in');
+                }
+                observer.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll(revealSelector).forEach(el => observer.observe(el));
+
+    /* Garante que elementos do hero já apareçam imediatamente */
+    document.querySelectorAll('#inicio .reveal, #inicio .reveal-left, #inicio .reveal-right, #inicio .reveal-scale, #inicio .hero-stats').forEach(el => el.classList.add('in'));
+
+</script>
+
+</body>
+</html>
